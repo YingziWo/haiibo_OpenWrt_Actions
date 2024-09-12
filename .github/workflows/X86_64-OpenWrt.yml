@@ -119,7 +119,7 @@ jobs:
         cd $OPENWRT_PATH
         make defconfig
         make download -j8
-        rm -rf package/luci-app-alist
+        rm -rf package/luci-app-alist                #新增,删除这个应用插件，编译过程中出错 2024.09.12
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
