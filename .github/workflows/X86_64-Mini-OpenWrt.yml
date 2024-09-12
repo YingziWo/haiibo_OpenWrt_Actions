@@ -54,6 +54,24 @@ jobs:
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
 
+    - name: 释放Ubuntu磁盘空间
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+   
+    - name: list disk space
+      run: |
+        df -hT $PWD
+
     - name: Clone Source Code
       run: |
         df -hT $GITHUB_WORKSPACE
@@ -162,7 +180,7 @@ jobs:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REPO_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
