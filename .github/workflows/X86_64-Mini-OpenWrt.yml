@@ -6,10 +6,10 @@ on:
     - cron: 0 19 * * *
 
 env:
-  #REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
-  #REPO_BRANCH: master
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  #REPO_URL: https://github.com/immortalwrt/immortalwrt    #编译的固件无ipv6，管理界面报错
+  REPO_BRANCH: master
+  #REPO_BRANCH: openwrt-21.02                              #编译的固件无ipv6，管理界面报错
   CONFIG_FILE: configs/x86_64-mini.config
   DIY_SCRIPT: diy-mini.sh
   CLASH_KERNEL: amd64
